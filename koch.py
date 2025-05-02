@@ -25,5 +25,5 @@ def snowflake(t, length):
         t.rt(120)
 
 t.teleport(x=-400, y=100)
-snowflake(t,1000)
+snowflake(t,600)
 turtle.mainloop()
