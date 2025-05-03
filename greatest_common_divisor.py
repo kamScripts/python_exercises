@@ -10,7 +10,7 @@ def gcd(a,b)->int:
     GCD(a,b)=GCD(a, b-a) when b>a"""
     if a<=0 or b<=0:
         raise ValueError("Numbers must be non negative and greater than 0")
-    #base case
+    #base case gcd(a,a)=a
     if a == b:
         return a
     #recursive steps
@@ -22,7 +22,7 @@ def gcd_r(a,b):
     """This algorithm is based on the principle that
     gcd(a,b) = gcd(b,r), where r is the reminder when a
     is divided by b. The base case is gcd(a,0) = a"""
-    #base
+    #base case gcd(a,0)=a
     if b == 0:
         return a
     #recursive step gcd(a,b)=gcd(b, a % b)
