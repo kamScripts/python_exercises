@@ -23,7 +23,7 @@ def snowflake(t, length):
     for i in range(3):
         koch(t, length)
         t.rt(120)
-
+t.speed(300)
 t.teleport(x=-400, y=100)
-snowflake(t,600)
+snowflake(t,400)
 turtle.mainloop()

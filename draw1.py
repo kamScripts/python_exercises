@@ -4,6 +4,7 @@ t=turtle.Turtle()
 
 def draw(t, length, n):
     if n == 0:
+        t.fd(n)
         return
     angle = 50
     t.fd(length*n)
