@@ -18,7 +18,7 @@ def has_no_e(word:str)->bool:
         Returns: True if string does not contain 'e'
     """
     return word.find('e')==-1
-def check_percentage(file:str, func)->float:
+def check_percentage(f, func)->float:
     """Measures how many times words meeting condition occur on the list.
     
     file: list - text file
@@ -26,15 +26,18 @@ def check_percentage(file:str, func)->float:
     
     Returns: float - Percentage of words in the list that meet condition.
     """
-    with open(file, 'r', encoding='UTF-8') as fin:
-        #more_than_20_chars(fin)
-        total = 0
-        counter = 0
-        for line in fin:
-            total+=1
-            stripped= line.strip()
-            if func(stripped):
-                counter+=1
-        return round(counter/total * 100, 4)
-res = check_percentage('words.txt', has_no_e)
-print(res, '%')
+    total = 0
+    counter = 0
+    
+    for line in fin:
+        total+=1
+        stripped= line.strip()
+
+        if func(stripped):
+            counter+=1
+
+    return round(counter/total * 100, 4)
+
+with open('words.txt', 'r', encoding='UTF-8') as fin:
+    res = check_percentage('words.txt', has_no_e)
+    print(res, '%')
