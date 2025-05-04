@@ -29,6 +29,6 @@ def gcd_r(a,b):
     else:
         return gcd_r(b, a % b)
 
-print(gcd(48, 18))
-print(gcd_r(48,18))
+print(gcd(320, 50))
+print(gcd_r(320,50))
 
