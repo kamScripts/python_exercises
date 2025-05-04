@@ -1,9 +1,7 @@
 def backward_traversal(string):
-    i=0
+    """traverse string characters backward"""
     j = -1
-    while i < len(string):
-        
+    while j >  -len(string)-1:
         print(string[j])
-        j-=1
-        i+=1
+        j-=1        
 backward_traversal("wolny weekend")
