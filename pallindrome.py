@@ -17,7 +17,7 @@ def is_pallindrome(word):
 print(is_pallindrome('racecar'))
 
 def is_pallindrome_slice(string):
-    s_no_spaces = string.replace(' ', '')
+    s_no_spaces = string.replace(' ', '').lower()
     return s_no_spaces == s_no_spaces[::-1]
 
-print(is_pallindrome_slice('race car'))
+print(is_pallindrome_slice('race Car'))
