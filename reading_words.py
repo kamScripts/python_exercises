@@ -30,7 +30,7 @@ def check_percentage(f, func)->float:
     f: class '_io.TextIOWrapper' - opened text file.
     func: class 'function' - condition to check.
     
-    Returns: float - Percentage of words in the list that meet condition.
+    Returns: tuple - (Percentage_of_words, count, total_words).
     """
     total = 0
     counter = 0
@@ -41,8 +41,7 @@ def check_percentage(f, func)->float:
 
         if func(stripped):
             counter+=1
-
-    return round(counter/total * 100, 4)
+    return (round(counter/total * 100, 4), counter, total)
 
 def avoids(word, forbidden_letters):
     for l in word:
@@ -61,13 +60,23 @@ def uses_all(word, allowed_all):
         if l not in word:
             return False
     return True
-d
+def is_abecedarian(word):
+    """Checks if letters in a world appear in
+    alphabetical order. Returns True or False"""
+    for index, l in enumerate(word):
+        if index == len(word)-1:
+            break
+        if ord(word[index+1]) < ord(l):
+            return False
+    return True
 with open('words.txt', 'r', encoding='UTF-8') as fin:
     #res = check_percentage(fin, has_no_e)
     #print(res, '%')
     for line in fin:
-        word=line.strip()
-        if uses_only(word, 'aeiou'):
-           print(word)
-
+        stripped = line.strip()
+        if is_abecedarian(stripped):
+            print(stripped)
+    fin.seek(0)
+    res = check_percentage(fin, is_abecedarian)
+    print(f'{res[0]}%, in alphabetical order: {res[1]}, total words: {res[2]}')
 
