@@ -67,6 +67,8 @@ def is_abecedarian(word):
     for index, l in enumerate(word):
         if index == len(word)-1:
             break
+        # this conditional doesn't need ord, only chars can be compared
+        # to get the same effect. It is just cool new string method.
         if ord(word[index+1]) < ord(l):
             return False
     return True
