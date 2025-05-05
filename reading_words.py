@@ -44,6 +44,7 @@ def check_percentage(f, func)->float:
     return (round(counter/total * 100, 4), counter, total)
 
 def avoids(word, forbidden_letters):
+    """Returns True if characters are not on forbidden list."""
     for l in word:
         if  l in forbidden_letters:
             return False
@@ -69,6 +70,21 @@ def is_abecedarian(word):
         if ord(word[index+1]) < ord(l):
             return False
     return True
+def is_abecedarian_solution(word):
+    """version from the book"""
+    previous = word[0]
+    for c in word:
+        if c < previous:
+            return False
+        previous=c
+    return True
+def is_abecedarian_recursive(word):
+    """recursive version from the book"""
+    if len(word) <= 1:
+        return True
+    if word[0] > word[1]:
+        return False
+    return is_abecedarian(word[1:])
 with open('words.txt', 'r', encoding='UTF-8') as fin:
     #res = check_percentage(fin, has_no_e)
     #print(res, '%')
