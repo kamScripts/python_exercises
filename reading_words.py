@@ -1,4 +1,10 @@
 import math
+
+def read_text(file, func, *args):
+    with open(file, 'r', encoding='UTF-8') as fin:
+        for line in fin:
+            func(args)
+
 def more_than_20_chars(word:str)->None:
     """Find and print strings with more than 20 chars.
         
@@ -38,7 +44,30 @@ def check_percentage(f, func)->float:
 
     return round(counter/total * 100, 4)
 
+def avoids(word, forbidden_letters):
+    for l in word:
+        if  l in forbidden_letters:
+            return False
+    return True
+def uses_only(word, allowed_letters):
+    """Returns True if word contains only letters in the list."""
+    for l in word:
+        if not l in allowed_letters:
+            return False
+    return True
+def uses_all(word, allowed_all):
+    """Returns True if word uses all required letters."""
+    for l in allowed_all:
+        if l not in word:
+            return False
+    return True
+d
 with open('words.txt', 'r', encoding='UTF-8') as fin:
-    print(type(fin), type(check_percentage))
-    res = check_percentage(fin, has_no_e)
-    print(res, '%')
+    #res = check_percentage(fin, has_no_e)
+    #print(res, '%')
+    for line in fin:
+        word=line.strip()
+        if uses_only(word, 'aeiou'):
+           print(word)
+
+
