@@ -90,7 +90,6 @@ def is_abecedarian_recursive(word):
 def three_doubles_finder(word):
     """Find word that has three consecutive double letters"""
     previous = word[0]
-
     i=1
     while i < len(word):
         if word[i] == previous:
