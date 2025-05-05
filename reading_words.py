@@ -87,14 +87,28 @@ def is_abecedarian_recursive(word):
     if word[0] > word[1]:
         return False
     return is_abecedarian(word[1:])
+def three_doubles_finder(word):
+    """Find word that has three consecutive double letters"""
+    previous = word[0]
+
+    i=1
+    while i < len(word):
+        if word[i] == previous:
+            if i + 4 < len(word):
+                return word[i+1]==word[i+2] and word[i+3]==word[i+4]
+        else:
+            previous=word[i]
+        i+=1
+    return False
+
 with open('words.txt', 'r', encoding='UTF-8') as fin:
     #res = check_percentage(fin, has_no_e)
     #print(res, '%')
     for line in fin:
         stripped = line.strip()
-        if is_abecedarian(stripped):
+        if three_doubles_finder(stripped):
             print(stripped)
-    fin.seek(0)
-    res = check_percentage(fin, is_abecedarian)
-    print(f'{res[0]}%, in alphabetical order: {res[1]}, total words: {res[2]}')
+    #fin.seek(0)
+    #res = check_percentage(fin, is_abecedarian)
+    #print(f'{res[0]}%, in alphabetical order: {res[1]}, total words: {res[2]}')
 
