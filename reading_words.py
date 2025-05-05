@@ -88,7 +88,15 @@ def is_abecedarian_recursive(word):
         return False
     return is_abecedarian(word[1:])
 def three_doubles_finder(word):
-    """Find word that has three consecutive double letters"""
+    """   Returns True if the word contains three consecutive pairs of identical letters,
+    with no intervening characters between the pairs.
+    
+    Args:
+        word (str): The word to check
+        
+    Returns:
+        bool: True if the word contains three consecutive double letters, False otherwise
+    """
     previous = word[0]
     i=1
     while i < len(word):
@@ -98,6 +106,38 @@ def three_doubles_finder(word):
         else:
             previous=word[i]
         i+=1
+    return False
+def three_doubles_finder_2(word):
+    """    
+    Returns True if the word contains three consecutive pairs of identical letters,
+    with no intervening characters between the pairs.
+    
+    Args:
+        word (str): The word to check
+        
+    Returns:
+        bool: True if the word contains three consecutive double letters, False otherwise
+    """
+    if len(word) < 6:  # Need at least 6 characters for three doubles
+        return False
+
+    i = 0
+    consecutive_doubles = 0
+
+    while i < len(word) - 1:
+        # Check if current position is a double letter
+        if word[i] == word[i + 1]:
+            consecutive_doubles += 1
+            i += 2  # Move past this double
+
+            # If we've found 3 consecutive doubles, return True
+            if consecutive_doubles == 3:
+                return True
+        else:
+            # If we encounter a non-double, reset counter and move to next character
+            consecutive_doubles = 0
+            i += 1
+
     return False
 
 with open('words.txt', 'r', encoding='UTF-8') as fin:
