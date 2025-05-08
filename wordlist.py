@@ -1,5 +1,10 @@
 import time
 def word_list(file):
+    """Returns list of lines from a file
+    
+    file: file path
+    
+    Returns: list"""
     t=[]
     with open(file, 'r', encoding='UTF-8') as fin:
         for line in fin:
