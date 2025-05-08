@@ -61,17 +61,18 @@ def is_sorted(t):
 #print(is_sorted([3,2]))
 
 def is_anagram(word1, word2):
-    """Checks if words are anagrams"""
-    t= list(word1)
-    x= list(word2)
-    t.sort()
-    x.sort()
-    print(t,x)
-    if len(t) != len(x):
-        return False
-    for i, l in enumerate(x):
-
-        if t[i] != l:
-            return False
-    return True
+    #"""Checks if words are anagrams"""
+    #t= list(word1)
+    #x= list(word2)
+    #t.sort()
+    #x.sort()
+    #print(t,x)
+    #if len(t) != len(x):
+    #    return False
+    #for i, l in enumerate(x):
+#
+    #    if t[i] != l:
+    #        return False
+    #return True
+    
 print(is_anagram('ab1ca', 'bc1aa'))
