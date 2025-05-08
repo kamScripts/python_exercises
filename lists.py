@@ -10,7 +10,7 @@ def nested_sum(t):
         total+=sum(i)
     return total
 a=[[1,2], [3], [4,5,6]]
-print(nested_sum(a))
+#print(nested_sum(a))
 
 def cumsum(t):
     """Cumulative sum, each elements is a sum of element
@@ -61,7 +61,11 @@ def is_sorted(t):
 #print(is_sorted([3,2]))
 
 def is_anagram(word1, word2):
-    #"""Checks if words are anagrams"""
+    """Checks if words are anagrams
+    word1: string or list
+    word2: string or list
+    
+    Returns: boolean"""
     #t= list(word1)
     #x= list(word2)
     #t.sort()
@@ -74,5 +78,19 @@ def is_anagram(word1, word2):
     #    if t[i] != l:
     #        return False
     #return True
+    return sorted(word1)==sorted(word2)
+#print(is_anagram('ab1ca', 'bc1aa'))
+
+def has_duplicates(t):
+    """Checks list if any element appear more than once
     
-print(is_anagram('ab1ca', 'bc1aa'))
+    t: list
+    
+    Returns: boolean
+    """
+    sorted_list=sorted(t)
+    for i in range(len(sorted_list)-1):
+        if sorted_list[i] == sorted_list[i+1]:
+            return True
+    return False
+print(has_duplicates([1,2,3,4,1]))
