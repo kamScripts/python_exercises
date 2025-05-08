@@ -6,12 +6,13 @@ def generate_bday():
     
     Returns: string 'day-month'
     """
-    month= random.randint(1,12)
-    if month==2:
-        day=random.randint(1,28)
-    else:
-        day=random.randint(1,31)
-    return f'{month}-{day}'
+    #month= random.randint(1,12)
+    #if month==2:
+    #    day=random.randint(1,28)
+    #else:
+    #    day=random.randint(1,31)
+    #return f'{month}-{day}'
+    return random.randint(1,365)
 def create_sample(n):
     """Creates a sample of generated b-days:
     
@@ -19,7 +20,7 @@ def create_sample(n):
     
     Returns: list of strings"""
     t=[]
-    for i in range(n):
+    for _ in range(n):
         t.append(generate_bday())
     return t
 def compare_dates(birthdays):
