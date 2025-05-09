@@ -17,3 +17,4 @@ def word_list2(file):
             t= t + [line.strip()]
     return t
 
+t=word_list('words.txt')

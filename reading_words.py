@@ -140,13 +140,13 @@ def three_doubles_finder_2(word):
 
     return False
 
-with open('words.txt', 'r', encoding='UTF-8') as fin:
-    #res = check_percentage(fin, has_no_e)
-    #print(res, '%')
-    for line in fin:
-        stripped = line.strip()
-        if three_doubles_finder(stripped):
-            print(stripped)
+#with open('words.txt', 'r', encoding='UTF-8') as fin:
+#    #res = check_percentage(fin, has_no_e)
+#    #print(res, '%')
+#    for line in fin:
+#        stripped = line.strip()
+#        if three_doubles_finder(stripped):
+#            print(stripped)
     #fin.seek(0)
     #res = check_percentage(fin, is_abecedarian)
     #print(f'{res[0]}%, in alphabetical order: {res[1]}, total words: {res[2]}')

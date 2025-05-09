@@ -26,7 +26,7 @@ def cumsum(t):
     for i in range(len(t)):
         new_list.append(sum(t[:i+1]))
     return new_list
-#print(cumsum([1,2,3,4,5]))
+print(cumsum([1,2,3,4,5]))
 
 def middle(t):
     """Removes first and last elements of the list
