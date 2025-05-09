@@ -40,20 +40,20 @@ def in_bisect_r(target, sorted_list):
         return in_bisect_r(target, sorted_list[mid+1:])
     return in_bisect_r(target, sorted_list[:mid])
 
-t= append_to_list('words.txt')
-
-s1=time.time()
-print(in_bisect('wryly', t))
-e1=time.time()
-s2=time.time()
-print('wryly' in t)
-e2=time.time()
-s3=time.time()
-print(in_bisect_r('wryly', t))
-e3=time.time()
-print(f"""
-      binary search: {e1-s1}s,
-      recursive b-search: {e3-s3}
-      iteration search: {e2-s2}s,
-      """)
+#t= append_to_list('words.txt')
+#
+#s1=time.time()
+#print(in_bisect('wryly', t))
+#e1=time.time()
+#s2=time.time()
+#print('wryly' in t)
+#e2=time.time()
+#s3=time.time()
+#print(in_bisect_r('wryly', t))
+#e3=time.time()
+#print(f"""
+#      binary search: {e1-s1}s,
+#      recursive b-search: {e3-s3}
+#      iteration search: {e2-s2}s,
+#      """)
 
