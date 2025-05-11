@@ -7,12 +7,11 @@ def has_duplicates_dict(t):
     
     d={}
     for el in t:
-        val = d.get(el, 0)
-        d[el] = val+1
-        if d[el] > 1:
+        if el in d:
             return True
+        d[el] = True
     return False
-
 if __name__=='__main__':
-    timer(has_duplicates, [1,2,3,4,5,6,7,8,9,1])
     timer(has_duplicates_dict, [1,2,3,4,5,6,7,8,9,1])
+    timer(has_duplicates, [1,2,3,4,5,6,7,8,9,1])
+    
