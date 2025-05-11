@@ -15,4 +15,4 @@ def caesar_cypher(string, n):
     for c in string:
         encrypted += rotate_letter(c, n)
     return encrypted
-
+print(caesar_cypher('gym', 12))

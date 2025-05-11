@@ -12,11 +12,11 @@ def words_to_dict(file):
 def rotate_pairs(d):
     """Uses caesar cypher to rotate words by n and checks
     if rotated string creates a word form the list"""
-    for key, value in d.items():
+    for word in d:
         for i in range(1, 26):
-            rotated= caesar_cypher(key, i)
+            rotated= caesar_cypher(word, i)
             if rotated in d:
-                d[key].append((i, rotated))
+                d[word].append((i, rotated))
 
 if __name__=='__main__':
     words=words_to_dict('words.txt')

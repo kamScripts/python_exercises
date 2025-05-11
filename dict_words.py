@@ -15,8 +15,9 @@ def words_dict(file):
             ln=line.strip()
             d[ln]= ln[::-1]
     return d
-words_d=words_dict('words.txt')
-words_list= append_to_list('words.txt')
-timer(in_bisect, 'table', words_list)
-timer(words_d.get, 'table')
+if __name__ == '__name__':
+    words_d=words_dict('words.txt')
+    words_list= append_to_list('words.txt')
+    timer(in_bisect, 'table', words_list)
+    timer(words_d.get, 'table')
 
