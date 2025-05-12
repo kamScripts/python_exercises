@@ -6,15 +6,8 @@ def count_letters(text):
             for c in line.lower().strip():
                 if c>='a':
                     count+=1
-                    val = d.get(c, 0)
-                    d[c] = val+1
+                    d[c] = d.get(c, 0)+1
     return (d,count)
-pl=count_letters('sample_pl.txt')
-eng=count_letters('sample_eng.txt')
-de=count_letters('sample_de.txt')
-
-
-
 
 def most_frequent(d):
     m_fr=[]
@@ -22,8 +15,8 @@ def most_frequent(d):
     for key, val in d[0].items():
 
         m_fr.append((val,f'{round(val/count*100,2)}%', key))
-    m_fr.sort()
-    return m_fr[::-1]
+    m_fr.sort(reverse=True)
+    return m_fr
 
 def print_output(t, lang):
     headers=('letters', 'frequency', 'counted')
@@ -33,12 +26,22 @@ def print_output(t, lang):
     print(': | '.join(headers), end=' ')
     print('+')
     print('|----------+------------+---------|')
-    for c in t:
-        print('| ',c[2].ljust(8), end='')
-        print('|',c[1].ljust(11), end='')
-        print('|',f'{c[0]}'.ljust(8), end='|')
+    for val, fr, c in t:
+        print('| ',c.ljust(8), end='')
+        print('|',fr.ljust(11), end='')
+        print('|',f'{val}'.ljust(8), end='|')
         print()
     print('+----------+------------+---------+')
-    
-most_pl=most_frequent(pl)   
-print_output(most_pl, 'Polish')
+if __name__=='__main__':
+    pl=count_letters('sample_pl.txt')
+    eng=count_letters('sample_eng.txt')
+    de=count_letters('sample_de.txt')
+    most_pl=most_frequent(pl)
+    most_de=most_frequent(de)
+    most_eng=most_frequent(eng)
+    print(pl[1])
+    print_output(most_pl, 'Polish')
+    print(eng[1])
+    print_output(most_eng, 'English')
+    print(de[1])
+    print_output(most_de, 'German')

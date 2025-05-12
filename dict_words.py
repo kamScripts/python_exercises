@@ -1,6 +1,4 @@
-from wordlist import word_list as append_to_list
-from in_list import in_bisect
-from timer import timer
+
 def words_dict(file):
     """Reads line from text files and stores them in the dictionary.
     {word: word backwards}
@@ -15,9 +13,7 @@ def words_dict(file):
             ln=line.strip()
             d[ln]= ln[::-1]
     return d
-if __name__ == '__name__':
+if __name__ == '__main__':
     words_d=words_dict('words.txt')
-    words_list= append_to_list('words.txt')
-    timer(in_bisect, 'table', words_list)
-    timer(words_d.get, 'table')
+    print(words_d)
 
