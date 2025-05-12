@@ -34,7 +34,7 @@ def find_anagrams(file_path):
     except FileNotFoundError:
         print(f"Error: File '{file_path}' not found.")
         return {}
-    
+
 def print_anagrams(d):
     """Display anagram sets sorted by their length
     
@@ -47,14 +47,27 @@ def print_anagrams(d):
         a_list.append((len(val), val))
     a_list.sort()
     for l, item in a_list:
-        print(l, ', '.join(item))
+        print(', '.join(item))
+
+def exact_length_anagram(d, n):
+    """Select only anagrams of length n
     
-
-
+    d: dict - anagrams dict
+    n: int - length of anagram
+    
+    Returns: dict of n-long anagrams
+    """
+    return {key: val for key, val in d.items() if len(key) == n}
+def no_anagrams(d, n):
+    """Select words that have n anagrams
+    
+    d: dict
+    n: int
+    
+    Returns: dict of n-number anagrams"""
+    return {key: val for key, val in d.items() if len(val) == n}
 
 if __name__ == '__main__':
     file_path = 'words.txt'
-    anagram_dict = find_anagrams(file_path)
-    print_anagrams(anagram_dict)
-    
-    
+    anagram_dict = find_anagrams(file_path)    
+    print_anagrams(no_anagrams(anagram_dict, 8))
