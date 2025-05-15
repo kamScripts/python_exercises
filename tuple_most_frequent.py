@@ -34,6 +34,7 @@ def print_output(t, lang):
     print('+----------+------------+---------+')
 if __name__=='__main__':
     pl=count_letters('sample_pl.txt')
+    print(pl[0])
     eng=count_letters('sample_eng.txt')
     de=count_letters('sample_de.txt')
     most_pl=most_frequent(pl)
