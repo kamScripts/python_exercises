@@ -23,10 +23,12 @@ def cumsum(t):
     Returns: new list of cumulative sums of elements 
     """
     new_list=[]
-    for i in range(len(t)):
-        new_list.append(sum(t[:i+1]))
+    total=0
+    for x in t:
+        total+=x
+        new_list.append(total)
     return new_list
-print(cumsum([1,2,3,4,5]))
+
 
 def middle(t):
     """Removes first and last elements of the list
@@ -93,4 +95,5 @@ def has_duplicates(t):
         if sorted_list[i] == sorted_list[i+1]:
             return True
     return False
-print(has_duplicates([1,2,3,4,1]))
+if __name__=='__main__':
+    print(has_duplicates([1,2,3,4,1]))

@@ -1,5 +1,8 @@
 import string
 from dict_histogram import histogram
+import timer
+import random
+from bisect import bisect
 p= string.punctuation+'“”‘’'+'0123456789'
 spaces= [' ' for i in range(len(p))]
 w= string.whitespace
@@ -15,9 +18,8 @@ def clean_string(file):
     with open(file, 'r', encoding='UTF-8') as fin:
         d={}
         for line in fin:
-            line=line.replace('—', ' ')
             line=line.translate(translation_table)
-            for word in line.split():             
+            for word in line.split():
                 word=word.lower()
                 d[word]= d.get(word, 0) + 1
         return d, sum(d.values()), len(d)
@@ -37,10 +39,34 @@ def subtract(d1, d2):
         if key not in d2:
             words[key]=None
     return words
+def set_subtract(d1,d2):
+    """Display the difference between sets of words
+    Set approach may be slower than version with loop
+    as it has to copy data and create new data structures"""
+    return set(d1)-set(d2)
+def random_word(h):
+    t=[]
+    for word,freq in h.items():
+        t.extend([word]*freq)
+    return random.choice(t)
+def random_w(h):
+    total_freq=0
+    ws=[]
+    freqs=[]
+    for word, freq in h.items():
+        total_freq+=freq
+        ws.append(word)
+        freqs.append(total_freq)
+    x=random.randint(0, total_freq-1)
+    index=bisect(freqs,x)
+    
+    return ws[index]
+
+    
 if __name__=='__main__':
-    alice, at, au=clean_string('Alice_Adeventures_in_wonderlad.txt')
-    shakespeare, st, su=clean_string('shakespeare.txt')
-    jekyll_and_hyde, jt, ju=clean_string('jekyll_and_hyde.txt')
+#    alice, at, au=clean_string('Alice_Adeventures_in_wonderlad.txt')
+#   shakespeare, st, su=clean_string('shakespeare.txt')
+#    jekyll_and_hyde, jt, ju=clean_string('jekyll_and_hyde.txt')
 #    print('Alice in the Wonderland\n',find_20_most_common(alice),
 #          f'total words count: {at}, unique words count: {au}')
 #    print('Shakespeare poetry\n',find_20_most_common(shakespeare),
@@ -49,9 +75,11 @@ if __name__=='__main__':
 #          f'total words count: {jt}, unique words count: {ju}')
     emma,et,eu=clean_string('emma.txt')
     words, wt, wu = clean_string('words.txt')
-    difference=subtract(emma, words)
+#    timer.timer(set_subtract, emma,words)
+#    timer.timer(subtract, emma, words)
+    print_results(find_20_most_common(emma))
+    for key in emma:
+        if len(key)==4:
+            print(key)
     
-    
-    #print('Emma\n',f'total words count: {et}, unique words count: {eu}')
-    #print_results(find_20_most_common(emma))
-    
+   
