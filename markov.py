@@ -44,7 +44,7 @@ def random_text(length=300):
         word = random.choice(suffixes)
         print(word, end=' ')
         start = start[1:]+(word,)
+#read_file('emma.txt')
 read_file('emma.txt')
-read_file('jekyll_and_hyde.txt')
 
-print(random_text())
+random_text()
