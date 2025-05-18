@@ -70,4 +70,4 @@ def no_anagrams(d, n):
 if __name__ == '__main__':
     file_path = 'words.txt'
     anagram_dict = find_anagrams(file_path)    
-    print_anagrams(no_anagrams(anagram_dict, 8))
+    print_anagrams(no_anagrams(anagram_dict, 11))
