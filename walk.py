@@ -28,4 +28,4 @@ def w(directory):
                 path=os.path.join(d[0], file)
                 print(path)
 
-w(cwd)
+print(os.path.split(cwd))
