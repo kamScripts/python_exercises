@@ -1,5 +1,6 @@
 import math
 import copy
+import print_attributes 
 class Point:
     """Represents a point in 2-D space.
 
@@ -11,11 +12,15 @@ class Point:
     def __str__(self):
         return f'({self.x}, {self.y})'
     def __add__(self, other):
+        """Type-based dispatch, dispatches the computation to different methods
+        based on the type of the arguments.
+        """
         if isinstance(other, Point):
             return self.add_points(other)
         
         return self.add_tuple(other)
     def __radd__(self, other):
+        """Do a computation if other is placed as a first arg"""
         return self.__add__(other)
     def print_point(self):
         print(str(self))
@@ -107,4 +112,4 @@ if __name__=='__main__':
     p4=(3,7)+p3
     print(p1,p2,p3,p4, sep='\t')
     
-    
+print_attributes.print_attributes(p4)
