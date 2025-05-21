@@ -35,20 +35,26 @@ class Deck:
         self.cards.append(card)
     def shuffle(self):
         random.shuffle(self.cards)
-    def sort_deck(self):
+    def sort(self):
         self.cards.sort()
     def move_cards(self, hand, num):
         for i in range(num):
             hand.add_card(self.pop_card())
+    def deal_hands(self,n_hands, n_cards):
+        hands = []
+        self.shuffle()
+        for hand in range(n_hands):
+            hands.append(Hand(str(hand)))
+        for n in range(n_cards+1):
+            for hand in hands:
+                hand.add_card(self.pop_card())
+        return hands
 class Hand(Deck):
     """Represents a hand of playing cards"""
     def __init__(self, label=''):
         self.cards = []
         self.label = label
-    
+
 deck=Deck()
-deck.shuffle()
-print(deck)
-print('*'*20)
-deck.sort_deck()
+deck.sort()
 print(deck)
