@@ -67,17 +67,26 @@ class PokerHand(Hand):
         return False
     def has_straight(self):
         self.rank_hist()
-        if len(self.ranks.keys())<5:
-            return False        
+        if len(self.ranks.keys()) < 5:
+            return False
+        
         s = sorted(self.ranks.keys())
-        if 1 in s and sum(s) >=47:
-            s.append(14)
-            del s[0]
-
-        for i in range(1,len(s)-1):
-            if s[i+1] - s[i] != 1:
-                return False
-        return True
+        
+        # Check for Ace-high straight first
+        if 1 in s and set([10, 11, 12, 13]).issubset(set(s)):
+            return True
+        
+        # Check for regular straights
+        consecutive = 1
+        for i in range(1, len(s)):
+            if s[i] - s[i-1] == 1:
+                consecutive += 1
+                if consecutive >= 5:
+                    return True
+            else:
+                consecutive = 1
+        
+        return False
 if __name__ == '__main__':
     # make a deck
     deck = Deck()
