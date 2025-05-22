@@ -48,6 +48,7 @@ class PokerHand(Hand):
         if num in self.ranks.values():
             return True
         return False
+
     def has_pair(self):
         return self.same_rank(2)
     def has_three_of_kind(self):
@@ -65,7 +66,18 @@ class PokerHand(Hand):
             prev=val
         return False
     def has_straight(self):
-        pass
+        self.rank_hist()
+        if len(self.ranks.keys())<5:
+            return False        
+        s = sorted(self.ranks.keys())
+        if 1 in s and sum(s) >=47:
+            s.append(14)
+            del s[0]
+
+        for i in range(1,len(s)-1):
+            if s[i+1] - s[i] != 1:
+                return False
+        return True
 if __name__ == '__main__':
     # make a deck
     deck = Deck()
@@ -81,7 +93,8 @@ if __name__ == '__main__':
         print('pair', hand.has_pair())
         print('two pairs', hand.has_2_pairs())
         print('three of kind', hand.has_three_of_kind())
-        print('full house')
+        print('four of kind', hand.has_four_of_kind())
+        print('full house', hand.has_full_house())
         print(hand.suit_hist())
         print(hand.rank_hist())
         print('')
