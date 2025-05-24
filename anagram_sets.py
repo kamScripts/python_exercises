@@ -10,7 +10,7 @@ License: http://creativecommons.org/licenses/by/4.0/
 """
 
 from __future__ import print_function, division
-
+from collections import defaultdict
 
 def signature(s):
     """Returns the signature of this string.
@@ -26,25 +26,30 @@ def signature(s):
     return t
 
 
+#def all_anagrams(filename):
+#    """Finds all anagrams in a list of words.
+#
+#    filename: string filename of the word list
+#
+#    Returns: a map from each word to a list of its anagrams.
+#    """
+#    d = {}
+#    for line in open(filename):
+#        word = line.strip().lower()
+#        t = signature(word)
+#
+#        # TODO: rewrite using defaultdict
+#        if t not in d:
+#            d[t] = [word]
+#        else:
+#            d[t].append(word)
+#    return d
 def all_anagrams(filename):
-    """Finds all anagrams in a list of words.
-
-    filename: string filename of the word list
-
-    Returns: a map from each word to a list of its anagrams.
-    """
-    d = {}
-    for line in open(filename):
-        word = line.strip().lower()
+    d=defaultdict(list)
+    for line in open(filename, 'r', encoding='UTF-8'):
+        word=line.strip().lower()
         t = signature(word)
-
-        # TODO: rewrite using defaultdict
-        if t not in d:
-            d[t] = [word]
-        else:
-            d[t].append(word)
-    return d
-
+        d[t].append(word)
 
 def print_anagram_sets(d):
     """Prints the anagram sets in d.
