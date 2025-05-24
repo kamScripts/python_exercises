@@ -1,3 +1,4 @@
+from collections import Counter
 def nested_sum(t):
     """Adds up elements of the nested lists
     
@@ -80,9 +81,13 @@ def is_anagram(word1, word2):
     #    if t[i] != l:
     #        return False
     #return True
-    return sorted(word1)==sorted(word2)
+    # sorted version
+    #return sorted(word1)==sorted(word2)
+    #collections- counter version
+    print(Counter(word1))
+    return Counter(word1) == Counter(word2)
 #print(is_anagram('ab1ca', 'bc1aa'))
-
+print('is anagram',is_anagram('race', 'erac'))
 def has_duplicates(t):
     """Checks list if any element appear more than once
     

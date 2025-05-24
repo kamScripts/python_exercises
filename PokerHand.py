@@ -16,7 +16,8 @@ from Card1 import Hand, Deck
 
 class PokerHand(Hand):
     """Represents a poker hand."""
-
+    labels=['straight_flush', 'four_of_kind', 'full_house', 'flush',
+            'three_of_kind', '2_pairs','pair' ]
     def suit_hist(self):
         """Builds a histogram of the suits that appear in the hand.
 
@@ -25,13 +26,11 @@ class PokerHand(Hand):
         self.suits = {}
         for card in self.cards:
             self.suits[card.suit] = self.suits.get(card.suit, 0) + 1
-        return self.suits
+            
     def rank_hist(self):
         self.ranks={}
         for card in self.cards:
             self.ranks[card.rank]=self.ranks.get(card.rank,0)+1
-        return self.ranks
-        
     def has_flush(self):
         """Returns True if the hand has a flush, False otherwise.
       
@@ -44,6 +43,7 @@ class PokerHand(Hand):
                 return True
         return False
     def same_rank(self, num):
+        """Returns true if hand has same number of card as arg"""
         self.rank_hist()
         if num in self.ranks.values():
             return True
@@ -69,13 +69,13 @@ class PokerHand(Hand):
         self.rank_hist()
         if len(self.ranks.keys()) < 5:
             return False
-        
+
         s = sorted(self.ranks.keys())
-        
+
         # Check for Ace-high straight first
         if 1 in s and set([10, 11, 12, 13]).issubset(set(s)):
             return True
-        
+
         # Check for regular straights
         consecutive = 1
         for i in range(1, len(s)):
@@ -85,8 +85,26 @@ class PokerHand(Hand):
                     return True
             else:
                 consecutive = 1
-        
+
         return False
+    def has_straight_flush(self):
+        d={}
+        for c in self.cards:
+            d.setdefault(c.suit, PokerHand()).add_card(c)
+        for hand in d.values():
+            if len(hand.cards) < 5:
+                continue
+            hand.rank_hist()
+            if hand.has_straight():
+                return True
+        return False
+    def classify(self):
+        self.labels=[]
+        for label in PokerHand.labels:
+            f=getattr(self, 'has_'+ label)
+            if f():
+                self.labels.append(label)
+            
 if __name__ == '__main__':
     # make a deck
     deck = Deck()
@@ -97,14 +115,6 @@ if __name__ == '__main__':
         hand = PokerHand()
         deck.move_cards(hand, 7)
         hand.sort()
-        print(hand)
-        print('flush',hand.has_flush())
-        print('pair', hand.has_pair())
-        print('two pairs', hand.has_2_pairs())
-        print('three of kind', hand.has_three_of_kind())
-        print('four of kind', hand.has_four_of_kind())
-        print('full house', hand.has_full_house())
-        print(hand.suit_hist())
-        print(hand.rank_hist())
-        print('')
+        hand.classify()
+        print(hand.labels)
 

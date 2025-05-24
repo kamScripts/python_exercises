@@ -49,12 +49,20 @@ def avoids(word, forbidden_letters):
         if  l in forbidden_letters:
             return False
     return True
+print('a,',avoids('avoids', 'tevq'))
+def avoids_set(word, forbidden):
+    return set(word).isdisjoint(set(forbidden))
+print('a_set,',avoids_set('avoids', 'teq'))
 def uses_only(word, allowed_letters):
     """Returns True if word contains only letters in the list."""
     for l in word:
         if not l in allowed_letters:
             return False
     return True
+def uses_only_set(word, allowed):
+    """Returns True if word contains only letters in the list,
+    Using set comparison"""
+    return set(word) <= set(allowed)
 def uses_all(word, allowed_all):
     """Returns True if word uses all required letters."""
     for l in allowed_all:

@@ -15,21 +15,21 @@ class Test(unittest.TestCase):
         pk.add_card(Card(2,6))
         pk.add_card(Card(0,12))
         self.assertTrue(pk.has_full_house(), 'error')
-    def test_straight(self):
+    def test_straight_flush(self):
         pk=PokerHand()
         
         for i in range(1,6):
             pk.add_card(Card(1,i))
 
-        print(pk.rank_hist())
-        self.assertTrue(pk.has_straight())
+
+        self.assertTrue(pk.has_straight_flush())
     def test_straight2(self):
         pk=PokerHand()
         pk.add_card(Card(2,1))
         for i in range(10,14):
             pk.add_card(Card(1,i))
 
-        print(pk.rank_hist())
+
         self.assertTrue(pk.has_straight())
         
 if __name__=='__main__':
